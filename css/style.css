@@ -994,3 +994,127 @@ html{scroll-behavior:smooth}
 }
 @media(max-width:380px){.hc-t small{display:none}.hc-bt{font-size:.76rem;padding:9px 5px}}
 @media(prefers-reduced-motion:reduce){.hc-fab,.hc-fab.wave,.hc-panel.open{animation:none}.hc-nudge{transition:none}}
+
+
+/* =====================================================================
+   v10 - mobile menu fix + mobile header (business name + Call Now)
+   ===================================================================== */
+
+/* Desktop / laptop: the new mobile-only header items stay hidden */
+.hdr-call{display:none}
+
+/* Business name beside the logo: glowing, multi-colour lettering */
+.hname{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+  flex:0 1 auto;
+  margin-left:2px;
+  text-decoration:none;
+  line-height:1;
+  font-family:"Cinzel","Bricolage Grotesque",Georgia,serif;
+  text-transform:uppercase;
+}
+.hname span{
+  display:block;
+  white-space:nowrap;
+  font-weight:900;
+  background-size:240% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  animation:starshine 4s linear infinite;
+}
+.hname .hn1{
+  font-size:1.15rem;
+  letter-spacing:.06em;
+  background-image:linear-gradient(100deg,#d4101f 0%,#ff6a1a 25%,#f5a300 45%,#ffe27a 52%,#f5a300 60%,#ff6a1a 78%,#d4101f 100%);
+  filter:drop-shadow(0 0 6px rgba(255,170,40,.55));
+}
+.hname .hn2{
+  font-size:.86rem;
+  letter-spacing:.14em;
+  background-image:linear-gradient(100deg,#7c3aed 0%,#2563eb 28%,#06b6d4 48%,#a5f3fc 54%,#06b6d4 60%,#2563eb 78%,#7c3aed 100%);
+  filter:drop-shadow(0 0 6px rgba(6,182,212,.5));
+}
+@media(min-width:992px) and (max-width:1279px){.hname{display:none}}
+
+@media(max-width:991px){
+
+  /* FIX: the old rule put overflow:hidden on <body> too, which broke the
+     sticky header after scrolling (header jumped away, screen went white).
+     Now only the page itself is locked and the header always stays on screen. */
+  html.menu-open,
+  html.menu-open body{overflow:visible}
+  html.menu-open{overflow:hidden}
+  .nav{overscroll-behavior:contain}
+
+  /* Header row spacing on mobile */
+  .hdr .wrap{gap:8px}
+  .hlogo{margin:6px 0 6px 8px}
+  .hname{flex:1 1 auto;margin-left:8px}
+  .hname .hn1{font-size:.8rem;letter-spacing:.04em}
+  .hname .hn2{font-size:.68rem;letter-spacing:.09em}
+
+  /* Attractive Call Now button beside the menu button */
+  .hdr-call{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    flex:0 0 auto;
+    height:42px;
+    padding:0 14px 0 11px;
+    border-radius:999px;
+    font:800 .86rem/1 "Plus Jakarta Sans",sans-serif;
+    letter-spacing:.01em;
+    color:#fff;
+    text-decoration:none;
+    white-space:nowrap;
+    background:linear-gradient(180deg,#ff4545,#d4101f);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px -8px #e11d2e;
+    animation:hdrcall 2s ease-out infinite;
+  }
+  .hdr-call .ic{width:18px;height:18px;animation:hdrring 2.4s ease-in-out infinite;transform-origin:50% 50%}
+  .hdr-call:active{transform:scale(.96);filter:brightness(1.05)}
+  .menu-btn{margin-left:0}
+}
+
+@keyframes hdrcall{
+  0%{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px -8px #e11d2e,0 0 0 0 rgba(225,29,46,.5)}
+  70%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px -8px #e11d2e,0 0 0 11px rgba(225,29,46,0)}
+}
+@keyframes hdrring{
+  0%,60%,100%{transform:rotate(0)}
+  66%{transform:rotate(-16deg)}
+  72%{transform:rotate(14deg)}
+  78%{transform:rotate(-12deg)}
+  84%{transform:rotate(8deg)}
+  90%{transform:rotate(0)}
+}
+
+/* Small phones: slightly tighter so the full name still fits */
+@media(max-width:400px){
+  .hdr .wrap{gap:6px}
+  .hlogo{margin:6px 0 6px 4px}
+  .hname .hn1{font-size:.7rem;letter-spacing:.02em}
+  .hname .hn2{font-size:.58rem;letter-spacing:.04em}
+  .hdr-call{height:40px;padding:0 11px 0 9px;font-size:.8rem;gap:5px}
+  .hdr-call .ic{width:16px;height:16px}
+  .menu-btn{width:40px;height:40px}
+}
+@media(max-width:340px){
+  .lg-card img{height:36px}
+  .hname .hn1{font-size:.6rem;letter-spacing:.02em}
+  .hname .hn2{font-size:.5rem;letter-spacing:.04em}
+  .hdr-call{height:36px;padding:0 9px 0 8px;font-size:.72rem;gap:4px}
+  .hdr-call .ic{width:14px;height:14px}
+  .menu-btn{width:36px;height:36px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hdr-call,.hdr-call .ic{animation:none}
+}
