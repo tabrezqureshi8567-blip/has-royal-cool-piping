@@ -109,3 +109,52 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+
+/* =====================================================================
+   Call Now / Book Now buttons: every button gets its own glowing colour.
+   (Only adds a class like "cc-3"; the colours themselves live in
+   css/style.css under "v14 - coloured Call / Book buttons".)
+   ===================================================================== */
+(function () {
+  var COLOURS = 9;
+  var counter = 0;
+
+  function isCallOrBook(el) {
+    var t = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    if (el.matches('.hdr-call')) return true;
+    return t === 'call now' || t === 'book now' || t === 'call now 24×7' ||
+           t.replace(/[^a-z ]/g, '').trim() === 'call now' ||
+           t.replace(/[^a-z ]/g, '').trim() === 'book now';
+  }
+
+  function colourButtons() {
+    var list = document.querySelectorAll('a, button');
+    for (var i = 0; i < list.length; i++) {
+      var el = list[i];
+      if (el.hasAttribute('data-cc')) continue;
+      if (el.classList.contains('tb-i')) continue;   // top moving line is not a button
+      if (!isCallOrBook(el)) continue;
+      counter++;
+      el.setAttribute('data-cc', '1');
+      el.classList.add('cc', 'cc-' + (((counter - 1) % COLOURS) + 1));
+    }
+  }
+
+  function start() {
+    colourButtons();
+    if (window.MutationObserver) {
+      var timer = null;
+      new MutationObserver(function () {
+        clearTimeout(timer);
+        timer = setTimeout(colourButtons, 120);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();

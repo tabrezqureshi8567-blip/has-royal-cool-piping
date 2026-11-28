@@ -1,5 +1,5 @@
 /* ==========================================================================
-   H.A.S Royal Cool Service - Website Assistant (v9)
+   H.A.S Royal Cool Service Center - Website Assistant (v9)
    Runs fully inside the visitor's browser: no server, no API, no cost.
    Understands English, Hindi (Devanagari) and Hinglish.
    Every answer ends with Call Now / Book Now / WhatsApp so the visitor can act.
@@ -158,7 +158,7 @@
       return T('I don\'t see ' + pm + ' on my list, but we may still be able to reach you. Please call and our team will confirm quickly.', 'मेरी लिस्ट में ' + pm + ' नहीं दिख रहा, फिर भी हम पहुँच सकते हैं। कृपया कॉल करें, हमारी टीम जल्दी कन्फ़र्म कर देगी।');
     }
     if (has(t, ['area', 'areas', 'pin code', 'pincode', 'cover', 'serve', 'service area', 'इलाके', 'एरिया'])) {
-      return T('We serve <b>33 areas of Pune and Pimpri-Chinchwad</b>, including Kothrud, Baner, Aundh, Hadapsar, Viman Nagar, Wakad, Pimpri, Shivaji Nagar and more. Type your area name or pin code and I\'ll check it for you.', 'हम <b>पुणे और पिंपरी-चिंचवड के 33 इलाकों</b> में सेवा देते हैं, जैसे कोथरुड, बाणेर, औंध, हड़पसर, विमान नगर, वाकड, पिंपरी, शिवाजी नगर आदि। अपना एरिया या पिन कोड लिखें, मैं चेक कर दूँगा।');
+      return T('We serve <b>all areas of Pune</b>, including Kothrud, Baner, Aundh, Hadapsar, Viman Nagar, Wakad, Pimpri, Shivaji Nagar and more. Type your area name or pin code and I\'ll check it for you.', 'हम <b>पूरे पुणे के सभी इलाकों</b> में सेवा देते हैं, जैसे कोथरुड, बाणेर, औंध, हड़पसर, विमान नगर, वाकड, पिंपरी, शिवाजी नगर आदि। अपना एरिया या पिन कोड लिखें, मैं चेक कर दूँगा।');
     }
     return null;
   }
@@ -181,7 +181,7 @@
 
     // greetings / small talk
     if (words <= 5 && !own && has(t, ['hi', 'hii', 'hello', 'hey', 'hlo', 'namaste', 'namaskar', 'good morning', 'good evening', 'good afternoon', 'नमस्ते', 'नमस्कार', 'हेलो', 'हैलो', 'हाय']))
-      return out('<p>' + T('Hello! 👋 Welcome to <b>H.A.S Royal Cool Service</b>. I can help with repair advice, cost, timing, areas and booking. What is the problem?', 'नमस्ते! 👋 <b>H.A.S Royal Cool Service</b> में आपका स्वागत है। मैं रिपेयर की सलाह, खर्च, समय, इलाके और बुकिंग में मदद कर सकता हूँ। क्या प्रॉब्लम है?') + '</p>', null, CHIPS_MAIN());
+      return out('<p>' + T('Hello! 👋 Welcome to <b>H.A.S Royal Cool Service Center</b>. I can help with repair advice, cost, timing, areas and booking. What is the problem?', 'नमस्ते! 👋 <b>H.A.S Royal Cool Service Center</b> में आपका स्वागत है। मैं रिपेयर की सलाह, खर्च, समय, इलाके और बुकिंग में मदद कर सकता हूँ। क्या प्रॉब्लम है?') + '</p>', null, CHIPS_MAIN());
     if (words <= 6 && has(t, ['thank', 'thanks', 'thx', 'shukriya', 'dhanyavad', 'धन्यवाद', 'शुक्रिया', 'थैंक']))
       return out('<p>' + T('You\'re most welcome! 😊 Whenever you need a technician, just call or book. We\'re open 24 hours.', 'आपका बहुत स्वागत है! 😊 जब भी टेक्नीशियन चाहिए, कॉल करें या बुक करें। हम 24 घंटे खुले हैं।') + '</p>' + cta(svc), svc, CHIPS_MAIN());
     if (words <= 4 && has(t, ['bye', 'ok bye', 'good night', 'alvida', 'बाय'])) return out('<p>' + T('Take care! 😊 We\'re just a call away, 24 hours a day.', 'ध्यान रखिए! 😊 हम 24 घंटे बस एक कॉल दूर हैं।') + '</p>' + cta(svc), svc, CHIPS_MAIN());
@@ -244,11 +244,11 @@
     if (has(t, ['experience', 'years', 'anubhav', 'saal', 'trained', 'skilled', 'qualified', 'अनुभव', 'साल', 'ट्रेंड']))
       return withCta(T('We have <b>10 years of experience</b> in AC and home appliance repair, and our technicians are trained and explain the fault and the cost before starting any work. 🔧', 'हमारे पास AC और घरेलू अप्लायंस रिपेयर का <b>10 साल का अनुभव</b> है, और हमारे टेक्नीशियन ट्रेंड हैं, काम शुरू करने से पहले फॉल्ट और खर्च बताते हैं। 🔧'), svc);
     if (has(t, ['owner', 'malik', 'tabrez', 'who are you', 'about you', 'about us', 'company', 'मालिक', 'तबरेज़', 'तबरेज']))
-      return withCta(T('H.A.S Royal Cool Service is run by <b>Mohammad Tabrez Qureshi</b>. We repair AC and home appliances across Pune and Pimpri-Chinchwad. <a class="hc-l" href="about.html">More about us</a>', 'H.A.S Royal Cool Service के संचालक <b>मोहम्मद तबरेज़ कुरैशी</b> हैं। हम पूरे पुणे और पिंपरी-चिंचवड में AC और घरेलू अप्लायंस रिपेयर करते हैं। <a class="hc-l" href="about.html">हमारे बारे में</a>'), svc);
+      return withCta(T('H.A.S Royal Cool Service Center is run by <b>Mohammad Tabrez Qureshi</b>. We repair AC and home appliances across all of Pune. <a class="hc-l" href="about.html">More about us</a>', 'H.A.S Royal Cool Service Center के संचालक <b>मोहम्मद तबरेज़ कुरैशी</b> हैं। हम पूरे पुणे में AC और घरेलू अप्लायंस रिपेयर करते हैं। <a class="hc-l" href="about.html">हमारे बारे में</a>'), svc);
     if (has(t, ['address', 'located', 'where is your', 'your office', 'पता', 'आपका ऑफिस']))
       return withCta(T('Our registered address is Sarve No 125, Jadhav Pada, Gaondevi Road, Dhaniv Talav, Palghar, Maharashtra - 401209. For service in Pune, our technician comes to your home, so you just need to book or call. <a class="hc-l" href="contact.html">Contact page</a>', 'हमारा रजिस्टर्ड पता: सर्वे नं 125, जाधव पाडा, गांवदेवी रोड, धनिव तालाव, पालघर, महाराष्ट्र - 401209। पुणे में सेवा के लिए हमारा टेक्नीशियन आपके घर आता है, आपको सिर्फ़ बुक या कॉल करना है। <a class="hc-l" href="contact.html">Contact पेज</a>'), svc);
     if (has(t, ['home visit', 'at home', 'ghar', 'pickup', 'pick up', 'घर पर', 'घर आ']))
-      return withCta(T('Yes, our technician comes to your home in Pune and Pimpri-Chinchwad and checks the appliance there. 🏠 Most repairs are completed at home.', 'जी हाँ, हमारा टेक्नीशियन पुणे और पिंपरी-चिंचवड में आपके घर आकर अप्लायंस चेक करता है। 🏠 ज़्यादातर रिपेयर घर पर ही पूरे हो जाते हैं।'), svc);
+      return withCta(T('Yes, our technician comes to your home in all of Pune and checks the appliance there. 🏠 Most repairs are completed at home.', 'जी हाँ, हमारा टेक्नीशियन पूरे पुणे में आपके घर आकर अप्लायंस चेक करता है। 🏠 ज़्यादातर रिपेयर घर पर ही पूरे हो जाते हैं।'), svc);
     if (has(t, ['book', 'booking', 'appointment', 'schedule', 'visit', 'technician', 'engineer', 'mistri', 'mechanic', 'send someone', 'बुक', 'मिस्त्री', 'टेक्नीशियन', 'टेक्नीसियन', 'इंजीनियर', 'बुकिंग']))
       return withCta(T('Booking takes just 20 seconds: tap <b>Book Now</b>, enter your <b>name, phone number and the service</b>. Our team then calls you within about 5 minutes. Prefer talking? Call or WhatsApp us anytime. ✅', 'बुकिंग सिर्फ़ 20 सेकंड की है: <b>Book Now</b> दबाएँ, अपना <b>नाम, फ़ोन नंबर और सर्विस</b> भरें। हमारी टीम लगभग 5 मिनट में कॉल करेगी। बात करना पसंद है? कभी भी कॉल या WhatsApp करें। ✅'), svc, ['Areas you serve', 'How much will it cost?']);
 
